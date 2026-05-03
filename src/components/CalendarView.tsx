@@ -21,7 +21,7 @@ interface CalendarEvent {
 
 export default function CalendarView() {
     const [events, setEvents] = useState<CalendarEvent[]>([]);
-    // OSA 3: Kalenterin näkymä (päivä/viikko/kuukausi).
+    // OSA 3: Kalenterin näkymä (päivä/viikko/kuukausi)
     const [view, setView] = useState<View>(Views.MONTH);
     const [date, setDate] = useState(new Date());
 

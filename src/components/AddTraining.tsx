@@ -40,14 +40,14 @@ const EMPTY_FORM_STATE: FormState = {
 export default function AddTraining({ open, customers, onClose, onSave }: AddTrainingProps) {
   const [formData, setFormData] = useState<FormState>(EMPTY_FORM_STATE);
 
-  // EXTRA: Nollaa lomakekentät aina, kun avataan uusi harjoitus kohta.
+  // EXTRA: Nollaa lomakekentät aina, kun avataan uusi harjoitus kohta
   useEffect(() => {
     if (open) {
       setFormData(EMPTY_FORM_STATE);
     }
   }, [open]);
 
-  // EXTRA: Tarkistaa pakolliset kentät ja lähettää tiedot parent-komponentille.
+  // EXTRA: Tarkistaa pakolliset kentät ja lähettää tiedot parent-komponentille
   const handleSave = () => {
     if (!formData.date || !formData.duration || !formData.activity || !formData.customer) return;
 

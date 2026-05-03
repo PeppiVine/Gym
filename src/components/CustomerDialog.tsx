@@ -32,7 +32,7 @@ interface CustomerDialogProps {
 export default function CustomerDialog({ open, customerData, onClose, onSave }: CustomerDialogProps) {
   const [formData, setFormData] = useState<CustomerFormData>(EMPTY_CUSTOMER);
 
-  // EXTRA: Täyttää lomakkeen muokkausdatalla tai tyhjentää kentät uuden asiakkaan lisäyksessä.
+  // EXTRA: Täyttää lomakkeen muokkausdatalla tai tyhjentää kentät uuden asiakkaan lisäyksessä
   useEffect(() => {
     setFormData(customerData ?? EMPTY_CUSTOMER);
   }, [customerData]);

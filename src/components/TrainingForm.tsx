@@ -28,7 +28,7 @@ export default function TrainingForm({ formData, setFormData, customers }: Train
     return (
         <DialogContent>
             <Stack spacing={2} sx={{ mt: 1 }}>
-                {/* OSA 2: Harjoituksen päivämäärä ja aika syötetään DateTimePicker-komponentilla. */}
+                {/* OSA 2: Harjoituksen päivämäärä ja aika syötetään DateTimePicker */}
                 <DateTimePicker
                     label="Date and time"
                     value={formData.date}

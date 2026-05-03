@@ -20,7 +20,7 @@ interface Training {
   customerName: string;
 }
 
-// OSA 1: Tämä komponentti on harjoitusten oma listasivu.
+// OSA 1: Harjoitusten oma listasivu.
 export default function TrainingList() {
   const [trainings, setTrainings] = useState<Training[]>([]);
   const [customers, setCustomers] = useState<CustomerOption[]>([]);
@@ -33,7 +33,7 @@ export default function TrainingList() {
     fetchCustomers();
   }, []);
 
-  // EXTRA: Hakee asiakkaat AddTraining-valintalistaa varten.
+  // EXTRA: Hakee asiakkaat AddTraininglistaa v arten
   const fetchCustomers = async () => {
     try {
       const data = await fetchJson<{
@@ -52,7 +52,7 @@ export default function TrainingList() {
     }
   };
 
-  // EXTRA: Hakee harjoitukset ja liittää jokaiseen asiakkaan nimen kalenteri- ja taulukkonäkymää varten.
+  // EXTRA: Hakee harjoitukset ja liittää jokaiseen asiakkaan nimen kalenteri- ja taulukkonäkymää varten
   const fetchTrainings = async () => {
     try {
       const data = await fetchJson<{
@@ -92,7 +92,7 @@ export default function TrainingList() {
     }
   };
 
-  // OSA 2: Lisää uuden harjoituksen.
+  // OSA 2: Lisää uuden harjoituksen
   const handleAdd = async (formData: TrainingFormData) => {
     setAddDialogOpen(false);
 
@@ -105,7 +105,7 @@ export default function TrainingList() {
     }
   };
 
-  // OSA 2: Päivittää harjoituksen.
+  // OSA 2: Päivittää harjoituksen
   const handleUpdate = async (url: string, formData: TrainingFormData) => {
     try {
       await sendJson(url, 'PUT', formData);
@@ -116,7 +116,7 @@ export default function TrainingList() {
     }
   };
 
-  // OSA 2: Poistaa harjoituksen vasta kun on kysytty vahvistus.
+  // OSA 2: Poistaa harjoituksen vasta kun on kysytty vahvistus
   const handleDelete = async () => {
     if (!deleteUrl) return;
 
@@ -137,7 +137,7 @@ export default function TrainingList() {
       headerName: 'Date',
       flex: 1.2,
       minWidth: 170,
-      // OSA 1: Tämä pistää päivämäärän taulukkoon muotoon pp.kk.vvvv hh:mm.
+      // OSA 1: Tämä pistää päivämäärän taulukkoon oikeaan muotaan.
       valueFormatter: (value: string) =>
         value ? dayjs(value).format('DD.MM.YYYY HH:mm') : '',
     },
@@ -148,7 +148,7 @@ export default function TrainingList() {
       flex: 0.8,
       minWidth: 110,
     },
-    // OSA 1: Näyttää training kohdassa asiakkaan nimen.
+    // OSA 1: Näyttää training kohdassa asiakkaan nimen
     { field: 'activity', headerName: 'Activity', flex: 1, minWidth: 140 },
     { field: 'customerName', headerName: 'Customer', flex: 1.2, minWidth: 160 },
     {
@@ -158,13 +158,12 @@ export default function TrainingList() {
       width: 110,
       filterable: false,
       hideable: false,
-      // EXTRA: Toiminnot-sarake sisältää rivikohtaisen muokkaus- ja poistopainikkeen.
+      // EXTRA: Toiminnot-sarake muokkaus- ja poistopainike
       getActions: (params) => [
         <EditTraining
           key={`edit-${params.id}`}
           training={params.row as Training}
           customers={customers}
-          onClose={() => { }}
           onSave={(data) => handleUpdate(params.id as string, data)}
         />,
         <GridActionsCellItem

@@ -13,7 +13,7 @@ interface Customer extends CustomerFormData {
   id: string;
 }
 
-// OSA 1: Asiakkaiden oma listasivu.
+// OSA 1: Asiakkaiden oma listasivu
 export default function CustomerList() {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -25,7 +25,7 @@ export default function CustomerList() {
     fetchCustomers();
   }, []);
 
-  // EXTRA: Hakee asiakkaat backendistä ja muuntaa rivi-ID:ksi self-linkin.
+
   const fetchCustomers = async () => {
     try {
       const data = await fetchJson<{ _embedded: { customers: Array<Customer & { _links: { self: { href: string } } }> } }>(
@@ -41,20 +41,20 @@ export default function CustomerList() {
     }
   };
 
-  // OSA 2: Avaa lomakkeen uuden asiakkaan lisäämistä varten.
+  // OSA 2: Avaa lomakkeen uuden asiakkaan lisäämistä varten
   const handleOpenAdd = () => {
     setEditData(null);
     setDialogOpen(true);
   };
 
-  // OSA 2: Avaa lomakkeen asiakkaan muokkausta varten.
+  // OSA 2: Avaa lomakkeen asiakkaan muokkausta varten
   const handleOpenEdit = ({ row }: GridRowParams) => {
     const { id, ...data } = row as Customer;
     setEditData({ url: id, data });
     setDialogOpen(true);
   };
 
-  // OSA 2: Tallentaa asiakkaan.
+  // OSA 2: Tallentaa asiakkaan
   const handleSave = async (formData: CustomerFormData) => {
     const url = editData ? editData.url : CUSTOMERS_URL;
     const method = editData ? 'PUT' : 'POST';
@@ -70,7 +70,7 @@ export default function CustomerList() {
     }
   };
 
-  // OSA 2: Poistaa asiakkaan vasta kun on vavhvistettu jälkeen.
+  // OSA 2: Poistaa asiakkaan vasta kun on vavhvistettu jälkeen
   const handleDelete = async () => {
     if (!deleteUrl) return;
 
@@ -85,7 +85,7 @@ export default function CustomerList() {
     }
   };
 
-  // OSA 3: Vie asiakasdatan CSV-tiedostoksi.
+  // OSA 3: Vie asiakasdatan CSV-tiedostoksi
   const handleExportCsv = () => {
     const headers = ['First name', 'Last name', 'Address', 'Postal code', 'City', 'Email', 'Phone'];
     const rows = customers.map(({ firstname, lastname, streetaddress, postcode, city, email, phone }) =>
@@ -118,7 +118,7 @@ export default function CustomerList() {
       width: 100,
       filterable: false,
       hideable: false,
-      // EXTRA: Toiminnot-sarake tarjoaa rivikohtaiset muokkaus- ja poistopainikkeet.
+      // EXTRA: rivikohtaiset muokkaus- ja poistopainikkeet
       getActions: (params) => [
         <GridActionsCellItem
           icon={<EditIcon color="primary" />}

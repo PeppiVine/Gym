@@ -18,7 +18,6 @@ interface TrainingData {
 interface EditTrainingProps {
     training: TrainingData;
     customers: CustomerOption[];
-    onClose: () => void;
     onSave: (data: TrainingFormData) => void;
 }
 
@@ -29,8 +28,8 @@ interface FormState {
     customer: string;
 }
 
-// OSA 3: Komponentti muokkaa olemassa olevaa harjoitusta.
-export default function EditTraining({ training, customers, onClose, onSave }: EditTrainingProps) {
+// OSA 3: Komponentti muokkaa olemassa olevaa harjoitusta
+export default function EditTraining({ training, customers, onSave }: EditTrainingProps) {
     const [open, setOpen] = useState(false);
     const [formData, setFormData] = useState<FormState>({
         date: dayjs(),
@@ -39,7 +38,7 @@ export default function EditTraining({ training, customers, onClose, onSave }: E
         customer: '',
     });
 
-    // EXTRA: Avaa dialogi ja täyttää sen nykyisillä harjoituksen tiedoilla.
+    // EXTRA: Avaa dialogi ja täyttää se harjoituksen tiedoilla
     const handleClickOpen = () => {
         setFormData({
             date: dayjs(training.date),
@@ -50,12 +49,12 @@ export default function EditTraining({ training, customers, onClose, onSave }: E
         setOpen(true);
     };
 
-    // EXTRA: Sulkee muokkaisdialogon.
+    // EXTRA: Sulkee muokkaisdialogon
     const handleClose = () => {
         setOpen(false);
     };
 
-    // EXTRA: Validoi lomakkeen ja lähettää päivitetyt tiedot parent-komponentille.
+    // EXTRA: Validoi lomakkeen ja lähettää päivitetyt tiedot parent
     const handleSave = () => {
         if (!formData.date || !formData.duration || !formData.activity || !formData.customer) return;
 
