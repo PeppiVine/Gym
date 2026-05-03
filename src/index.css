@@ -1,0 +1,31 @@
+html,
+body,
+#root {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after,
+.MuiTypography-root,
+.MuiButton-root,
+.MuiInputBase-input,
+.MuiInputLabel-root,
+.MuiFormLabel-root,
+.MuiTab-root,
+.MuiMenuItem-root,
+.MuiDataGrid-root,
+.MuiDataGrid-cell,
+.MuiDataGrid-columnHeaderTitle,
+.MuiDialogTitle-root,
+.MuiDialogContent-root,
+.MuiDialogActions-root,
+.rbc-calendar,
+.rbc-toolbar,
+.rbc-event,
+.rbc-agenda-view,
+.rbc-time-view,
+.rbc-month-view {
+  font-family: Arial, sans-serif;
+}
